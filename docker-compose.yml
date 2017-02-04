@@ -1,13 +1,20 @@
 # PHP
 version: '2'
 services:
-        phpfpm:
-                restart: always
-                extends:
-                        file: php-fpm-7.yml
-                        service: phpfpm
+#        phpfpm:
+#                restart: always
+#                extends:
+#                        file: php-fpm-7.yml
+#                        service: phpfpm
+#                links:
+#                        - db:db
+
+        wordpress:
+                image: wordpress:php:7.1-fpm-alpine
                 links:
-                        - db:db
+                        - mysql:db
+                env-file:
+                        -local.env
 
 # NGINX
         nginx:
